@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\CommentFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Comment extends Model
+{
+    /** @use HasFactory<CommentFactory> */
+    use HasFactory;
+
+    function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Post::class);
+    }
+}
