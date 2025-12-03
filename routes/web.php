@@ -9,3 +9,8 @@ Route::get('/', function () {
         'posts' => $posts
     ]);
 });
+
+// Show
+Route::get('/posts/{post:id}', function (Post $post) {
+    return view('posts.show', ['post' => $post]);
+});
