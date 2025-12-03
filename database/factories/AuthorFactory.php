@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\Author;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Post>
+ * @extends Factory<Author>
  */
-class PostFactory extends Factory
+class AuthorFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,9 +18,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->title(),
-            'body' => $this->faker->paragraph(),
-            'author_id' => Author::factory(),
+            'name' => $this->faker->name(),
+            'surname' => $this->faker->lastName(),
         ];
     }
 }
