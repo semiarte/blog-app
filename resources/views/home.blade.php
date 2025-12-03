@@ -40,7 +40,7 @@
                             <div class="flex items-center space-x-4">
                                 <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
                                 <span class="font-medium dark:text-white">
-                          Jese Leos
+                                    {{ $post->author->name }}
                       </span>
                             </div>
                             <a href="#" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
