@@ -12,8 +12,13 @@
                     </h1>
                     <form method="post" action="/register" class="space-y-4 md:space-y-6">
                         @csrf
+
                         <div>
-                            <x-form-label for="email">Your email</x-form-label>
+                            <x-form-label for="name">Name</x-form-label>
+                            <x-form-input type="text" name="name" id="name" placeholder="Your full name" required></x-form-input>
+                        </div>
+                        <div>
+                            <x-form-label for="email">Email</x-form-label>
                             <x-form-input type="email" name="email" id="email" placeholder="name@company.com" required></x-form-input>
                         </div>
                         <div>
@@ -21,8 +26,8 @@
                             <x-form-input type="password" name="password" id="password" placeholder="••••••••" required></x-form-input>
                         </div>
                         <div>
-                            <x-form-label for="confirm-password">Confirm password</x-form-label>
-                            <x-form-input type="password" name="confirm-password" id="confirm-password" placeholder="••••••••" required></x-form-input>
+                            <x-form-label for="password_confirmation">Confirm password</x-form-label>
+                            <x-form-input type="password" name="password_confirmation" id="password_confirmation" placeholder="••••••••" required></x-form-input>
                         </div>
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
@@ -34,7 +39,7 @@
                         </div>
                         <button type="submit" class="w-full text-gray-900 px-5 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer">Create an account</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+                            Already have an account? <a href="/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
                         </p>
                     </form>
                 </div>

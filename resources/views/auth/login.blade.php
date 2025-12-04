@@ -12,9 +12,16 @@
                     </h1>
                     <form method="post" action="/login" class="space-y-4 md:space-y-6">
                         @csrf
+
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-sm text-red-500 font-semibold mt-2">{{ $error }}</p>
+                            @endforeach
+                        @endif
+
                         <div>
                             <x-form-label for="email">Your email</x-form-label>
-                            <x-form-input type="email" name="email" id="email" placeholder="name@company.com" required></x-form-input>
+                            <x-form-input type="email" name="email" id="email" placeholder="name@company.com" :value="old('email')" required></x-form-input>
                         </div>
                         <div>
                             <x-form-label for="password">Password</x-form-label>
@@ -33,7 +40,7 @@
                         </div>
                         <button type="submit" class="w-full text-gray-900 px-5 py-2.5 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 cursor-pointer">Sign in</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                            Don’t have an account yet? <a href="/register" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                         </p>
                     </form>
                 </div>
