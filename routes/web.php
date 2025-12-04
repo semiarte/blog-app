@@ -1,16 +1,8 @@
 <?php
 
-use App\Models\Post;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $posts = Post::with('author')->paginate(4);
-    return view('home', [
-        'posts' => $posts
-    ]);
-});
+Route::view('/', 'home');
 
-// Show
-Route::get('/posts/{post:id}', function (Post $post) {
-    return view('posts.show', ['post' => $post]);
-});
+Route::resource('posts', PostController::class);
