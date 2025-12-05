@@ -19,7 +19,7 @@
                         </div>
                     </address>
                     <!-- Edit post button -->
-                    @auth
+                    @can('edit', $post)
                         <div class="flex justify-between items-center my-4">
                             <a href="/posts/{{ $post['id'] }}/edit" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" type="button">
                                 <svg class="h-3.5 w-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -29,7 +29,7 @@
                                 Edit post
                             </a>
                         </div>
-                    @endauth
+                    @endcan
 
                     <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $post->title }}</h1>
                 </header>

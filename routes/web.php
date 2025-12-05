@@ -7,14 +7,24 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $posts = Post::with('author')->latest()->paginate(4);
+    $posts = Post::with('author')->latest()->paginate(8);
     return view('home', [
         'posts' => $posts
     ]);
 });
 
 // Blog Posts
-Route::resource('posts', PostController::class);
+Route::get('/posts', [PostController::class, 'index'])->middleware('auth');
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::post('/posts', [PostController::class, 'store'])->middleware('auth');
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit', 'post');
+
+Route::patch('/posts/{post}', [PostController::class, 'update']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);

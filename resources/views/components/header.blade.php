@@ -1,11 +1,19 @@
-<section class="bg-white dark:bg-gray-900 flex items-center">
-    <div class="max-w-screen-xl px-4 py-4 mx-auto lg:px-12 w-full">
+<header class="bg-white dark:bg-gray-900 flex items-center">
+    <div class="max-w-screen-xl px-4 py-4 mx-auto lg:px-6 w-full">
         <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
-                <a href="/" class="flex items-center">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-                </a>
+                @guest
+                    <a href="/" class="flex items-center">
+                        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                    </a>
+                @endguest
+                @auth
+                    <a href="/posts" class="flex items-center">
+                        <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                    </a>
+                @endauth
 
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">
@@ -43,4 +51,4 @@
             </div>
         </div>
     </div>
-</section>
+</header>
