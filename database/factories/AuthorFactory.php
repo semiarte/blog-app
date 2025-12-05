@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Author;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'surname' => $this->faker->lastName(),
+            'user_id' => User::factory(),
         ];
     }
 }

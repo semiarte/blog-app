@@ -17,10 +17,10 @@
 </head>
 <body>
     <x-header></x-header>
-    <section class="bg-white dark:bg-gray-900">
+    <div class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
             {{ $slot }}
         </div>
-    </section>
+    </div>
 </body>
 </html>

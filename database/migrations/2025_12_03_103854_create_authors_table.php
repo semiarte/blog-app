@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
-            /*$table->foreignIdFor(Post::class);*/
+            $table->foreignIdFor(\App\Models\User::class);
             $table->string('name');
             $table->string('surname');
             $table->timestamps();

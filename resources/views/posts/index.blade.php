@@ -1,39 +1,52 @@
 <x-layout>
-    <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-        <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Tech blog</h2>
-        <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">We use an agile approach to test assumptions and connect with the needs of your audience early and often.</p>
-    </div>
-    <div class="grid gap-8 lg:grid-cols-2">
-        @foreach($posts as $post)
-            <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <!--  meta data -->
-                <div class="flex justify-between items-center mb-5 text-gray-500">
-                            <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                                <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
-                                  Tutorial
-                            </span>
-                    <span class="text-sm">14 days ago</span>
-                </div>
-                <!-- Title and excerpt -->
-                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="/posts/{{ $post['id'] }}">{{ $post['title'] }}</a></h2>
-                <p class="mb-5 font-light text-gray-500 dark:text-gray-400">{{ $post['body'] }}</p>
-                <!-- Author name and post link-->
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center space-x-4">
-                        <img class="w-7 h-7 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="{{ $post->author->name }} avatar" />
-                        <span class="font-medium dark:text-white">
-                                    {{ $post->author->name }}
-                        </span>
-                    </div>
-                    <a href="/posts/{{ $post['id'] }}" class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
-                        Read more
-                        <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    </a>
-                </div>
-            </article>
-        @endforeach
-    </div>
-    <div class="py-6">
-        {{ $posts->links() }}
-    </div>
+    <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
+        <div class="max-w-screen-xl mx-auto lg:px-6 w-full">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-4 py-3">Title</th>
+                        <th scope="col" class="px-4 py-3">Category</th>
+                        <th scope="col" class="px-4 py-3">Author</th>
+                        <th scope="col" class="px-4 py-3">
+                            <span class="sr-only">Actions</span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($posts as $post)
+                        <tr class="border-b dark:border-gray-700">
+                            <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"><a href="/posts/{{ $post['id'] }}">{{ $post['title'] }}</a></th>
+                            <td class="px-4 py-3">Tutorial</td>
+                            <td class="px-4 py-3">{{ $post->author->name }}</td>
+                            <td class="px-4 py-3 flex items-center justify-end">
+                                <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
+                                    <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                    </svg>
+                                </button>
+                                <div id="apple-imac-27-dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
+                                        <li>
+                                            <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                        </li>
+                                    </ul>
+                                    <div class="py-1">
+                                        <a href="#" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="py-6">
+                {{ $posts->links() }}
+            </div>
+        </div>
+    </section>
 </x-layout>

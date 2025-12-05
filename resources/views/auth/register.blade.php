@@ -16,18 +16,22 @@
                         <div>
                             <x-form-label for="name">Name</x-form-label>
                             <x-form-input type="text" name="name" id="name" placeholder="Your full name" required></x-form-input>
+                            <x-form-error name="name" />
                         </div>
                         <div>
                             <x-form-label for="email">Email</x-form-label>
                             <x-form-input type="email" name="email" id="email" placeholder="name@company.com" required></x-form-input>
+                            <x-form-error name="email" />
                         </div>
                         <div>
                             <x-form-label for="password">Password</x-form-label>
                             <x-form-input type="password" name="password" id="password" placeholder="••••••••" required></x-form-input>
+                            <x-form-error name="password" />
                         </div>
                         <div>
                             <x-form-label for="password_confirmation">Confirm password</x-form-label>
                             <x-form-input type="password" name="password_confirmation" id="password_confirmation" placeholder="••••••••" required></x-form-input>
+                            <x-form-error name="password_confirmation" />
                         </div>
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
