@@ -13,6 +13,14 @@ Route::get('/', function () {
     ]);
 });
 
+// Mail
+/*Route::get('/test', function () {
+    \Illuminate\Support\Facades\Mail::to('elsemi6@protonmail.com')->send(
+        new \App\Mail\PostPosted()
+    );
+    return 'Done';
+});*/
+
 // Blog Posts
 Route::get('/posts', [PostController::class, 'index'])->middleware('auth');
 Route::get('/posts/create', [PostController::class, 'create']);
