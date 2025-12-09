@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PostPosted;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('author')->latest()->paginate(4);
+        $posts = Post::with('author')->latest()->paginate(12);
         return view('posts.index', [
             'posts' => $posts
         ]);
@@ -30,11 +32,15 @@ class PostController extends Controller
             'body' => ['required', 'min:144']
         ]);
 
-        Post::create([
+        $post = Post::create([
             'title' => request('title'),
             'body' => request('body'),
             'author_id' => 1
         ]);
+
+        Mail::to($post->author->user)->send(
+            new PostPosted($post)
+        );
 
         return redirect('/posts');
     }
