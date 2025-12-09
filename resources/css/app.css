@@ -4,6 +4,9 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -58,4 +61,8 @@ input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+@view-transition {
+    navigation: auto;
 }
