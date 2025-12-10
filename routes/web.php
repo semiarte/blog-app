@@ -5,21 +5,25 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Http\Request;
 
-Route::get('/', function () {
-    $posts = Post::with('author')->latest()->paginate(8);
+Route::get('/', function (Request $request) {
+    $query = Post::with('author')->latest();
+
+    if ($request->has('search')) {
+      $search = $request->input('search');
+      $query->where(function ($q) use ($search) {
+          $q->where('title', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%');
+      });
+    }
+
+    $posts = $query->paginate(8)->withQueryString();
+
     return view('home', [
         'posts' => $posts
     ]);
 });
-
-// Mail
-/*Route::get('/test', function () {
-    \Illuminate\Support\Facades\Mail::to('elsemi6@protonmail.com')->send(
-        new \App\Mail\PostPosted()
-    );
-    return 'Done';
-});*/
 
 // Blog Posts
 Route::get('/posts', [PostController::class, 'index'])->middleware('auth');

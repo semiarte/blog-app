@@ -4,17 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Mail\PostPosted;
 use App\Models\Post;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::with('author')->latest()->paginate(12);
+        $query = Post::with('author')->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('body', 'like', '%' . $search . '%');
+            });
+        }
+
+        $posts = $query->paginate(12);
+
         return view('posts.index', [
             'posts' => $posts
         ]);
