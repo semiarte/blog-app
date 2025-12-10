@@ -10,20 +10,9 @@ use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = Post::with('author')->latest();
-
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'like', '%' . $search . '%')
-                  ->orWhere('body', 'like', '%' . $search . '%');
-            });
-        }
-
-        $posts = $query->paginate(12);
-
+        $posts = Post::with('author')->latest()->paginate(12);
         return view('posts.index', [
             'posts' => $posts
         ]);
@@ -85,5 +74,24 @@ class PostController extends Controller
 
         $post->delete();
         return redirect('/posts');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        $posts = Post::with('author')
+            ->when($query, function ($q) use ($query) {
+                $q->where('title', 'like', '%' . $query . '%')
+                  ->orWhere('body', 'like', '%' . $query . '%');
+        })
+        ->latest()
+        ->paginate(12)
+        ->withQueryString();
+
+        return view('posts.search', [
+            'posts' => $posts,
+            'search' => $query,
+        ]);
     }
 }

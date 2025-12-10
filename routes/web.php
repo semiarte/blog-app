@@ -5,21 +5,9 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-use \Illuminate\Http\Request;
 
-Route::get('/', function (Request $request) {
-    $query = Post::with('author')->latest();
-
-    if ($request->has('search')) {
-      $search = $request->input('search');
-      $query->where(function ($q) use ($search) {
-          $q->where('title', 'like', '%' . $search . '%')
-            ->orWhere('body', 'like', '%' . $search . '%');
-      });
-    }
-
-    $posts = $query->paginate(8)->withQueryString();
-
+Route::get('/', function () {
+    $posts = Post::with('author')->latest()->paginate(8);
     return view('home', [
         'posts' => $posts
     ]);
@@ -38,11 +26,15 @@ Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
 Route::patch('/posts/{post}', [PostController::class, 'update']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
-// Auth
-Route::get('/register', [RegisteredUserController::class, 'create']);
-Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::get('/search', [PostController::class, 'search'])->name('posts.search');
 
-Route::get('/login', [SessionController::class, 'create']);
-Route::post('/login', [SessionController::class, 'store']);
+// Auth
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisteredUserController::class, 'create']);
+    Route::post('/register', [RegisteredUserController::class, 'store']);
+
+    Route::get('/login', [SessionController::class, 'create']);
+    Route::post('/login', [SessionController::class, 'store']);
+});
 Route::post('/logout', [SessionController::class, 'destroy']);
 
