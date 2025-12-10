@@ -1,6 +1,6 @@
 <x-layout>
     <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
-        <div class="max-w-screen-xl mx-auto lg:px-6 w-full">
+        <div class="max-w-7xl mx-auto lg:px-6 w-full">
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

@@ -1,5 +1,5 @@
 <header class="bg-white dark:bg-gray-900 flex items-center">
-    <div class="max-w-screen-xl px-4 py-4 mx-auto lg:px-6 w-full">
+    <div class="max-w-7xl px-4 py-4 mx-auto lg:px-6 w-full">
         <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
             <div class="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
                 @guest
@@ -16,7 +16,7 @@
                 @endauth
 
                 <div class="w-full md:w-1/2">
-                    <form class="flex items-center">
+                    <form method="get" action="{{ route('posts.search')  }}" class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
